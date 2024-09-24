@@ -1,0 +1,62 @@
+/* GENERALES */
+
+:root {
+
+  --white: #FFFFFF;
+  --greyLight-1: #E4EBF5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+  --greyDark2: #4b5368;
+
+  --red: #C71212;
+  --green: #039508;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+main {
+  width : 100vw;
+}
+
+h2 {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+h3 {
+  font-size: 20px;
+  color: var(--red);
+  margin-bottom: 25px;
+}
+
+section {
+    width: 100%;
+    margin-bottom: 50px;
+}

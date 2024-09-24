@@ -1,0 +1,13 @@
+.victim-btn {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    background-color: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+}
+
+.victim-btn:hover {
+    transform: scale(1.02);
+}

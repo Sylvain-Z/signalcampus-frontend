@@ -1,0 +1,12 @@
+.imprints-section article {
+    width: 80%;
+    margin: 0 auto 25px auto;
+}
+.imprints-section p {
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+.imprints-section li {
+    list-style: none;
+    line-height: 25px;
+}
