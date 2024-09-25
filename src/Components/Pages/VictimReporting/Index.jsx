@@ -12,7 +12,7 @@ function VictimReporting() {
   const [count, setCount] = useState(null);
 
   // Fonction pour récupérer la géolocalisation
-  /*   const getLocation = () => {
+    const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -28,12 +28,12 @@ function VictimReporting() {
     } else {
       setError("La géolocalisation n'est pas supportée par votre navigateur.");
     }
-  }; */
+  };
 
   // Utilisation d'un effet pour récupérer la géolocalisation au montage du composant
-  /*   useEffect(() => {
+    useEffect(() => {
     getLocation();
-  }, []); */
+  }, []);
 
   console.log(location, error);
 
@@ -61,11 +61,17 @@ function VictimReporting() {
       }, 5000);
       setSubmitTimeout(timeoutId); // Stocke l'ID du timeout
     } else {
-      // Si la checkbox est décochée avant 5 secondes, annulez le timer
+      // Réinitialiser les états et annuler les timeouts/intervals
       clearTimeout(submitTimeout);
+      clearInterval(countInterval);
+      setCount(null); // Réinitialise le compteur
+      setMsg(null); // Remet à zéro le message
     }
-    // Nettoyage : annulez le timeout lors du démontage du composant
-    return () => clearTimeout(submitTimeout);
+    // Nettoyage lors du démontage du composant
+    return () => {
+      clearTimeout(submitTimeout);
+      clearInterval(countInterval);
+    };
   }, [isChecked]); // Effet exécuté à chaque changement de l'état de la checkbox
 
   const handleCheckboxChange = () => {
