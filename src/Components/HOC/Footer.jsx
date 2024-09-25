@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
-import './footer.css'
+import NavBar from "../NavBar";
 
 function Footer() {
-
-    return (
-        <>
-            <footer>
-                <p id="imprints"><Link to="/mentions-legales">Mentions Légales</Link></p>
-            </footer>
-
-        </>
-    );
+  return (
+    <>
+      <footer>
+        <NavBar />
+      </footer>
+    </>
+  );
 }
 
 export default Footer;

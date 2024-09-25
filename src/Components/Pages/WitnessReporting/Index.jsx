@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./witnessReporting.css";
+import axios from "axios";
 
 function WitnessReporting() {
   const [email, setEmail] = useState("");
@@ -60,24 +60,22 @@ function WitnessReporting() {
   };
 
   return (
-    <section className="reporting-ctn">
-      <h2 className="reporting-h2">Formulaire de Signalement</h2>
+    <section className="reporting-ctn witness-ctn">
+      <h2 className="reporting-h2">Témoigner</h2>
 
       <form onSubmit={handleSubmit} className="reporting-form">
         <input
           placeholder="Votre email"
-          type="email"
+          type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="form_input"
-          required
         />
 
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           className="form_input"
-          required
         >
           <option value="" disabled>
             Type de harcèlement
@@ -93,7 +91,6 @@ function WitnessReporting() {
           value={reportingContent}
           onChange={(e) => setReportingContent(e.target.value)}
           className="form_input form_textarea"
-          required
         />
 
         <input
@@ -102,13 +99,14 @@ function WitnessReporting() {
           value={place}
           onChange={(e) => setPlace(e.target.value)}
           className="form_input"
-          required
         />
 
         {msg && <p className="msg_valid">{msg}</p>}
         {error && <p className="msg_invalid">{error}</p>}
 
-        <button type="submit">Signaler !</button>
+        <button type="submit" className="witness-btn">
+          Signaler !
+        </button>
       </form>
     </section>
   );
