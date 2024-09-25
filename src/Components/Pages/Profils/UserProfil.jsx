@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Profils = () => {
   const [user, setUser] = useState(null);
   const [signalements, setSignalements] = useState([]);
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
@@ -29,22 +29,22 @@ const Profils = () => {
   const fetchUserData = async (userId) => {
     try {
       const response = await axios.get(`/api/users/${userId}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       if (response.data && response.data.id) {
         setUser(response.data);
       } else {
-        setError('Données utilisateur invalides');
+        setError("Données utilisateur invalides");
       }
     } catch (error) {
       console.error(
-        'Erreur lors de la récupération des données utilisateur:',
+        "Erreur lors de la récupération des données utilisateur:",
         error
       );
       if (error.response && error.response.status === 404) {
-        setError('Utilisateur non trouvé');
+        setError("Utilisateur non trouvé");
       } else {
-        setError('Erreur lors de la récupération des données utilisateur');
+        setError("Erreur lors de la récupération des données utilisateur");
       }
     } finally {
       setLoading(false);
@@ -54,18 +54,18 @@ const Profils = () => {
   const fetchUserSignalements = async (userId) => {
     try {
       const response = await axios.get(`/api/users/${userId}/signalements`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setSignalements(response.data);
     } catch (error) {
-      console.error('Erreur lors de la récupération des signalements:', error);
-      setError('Erreur lors de la récupération des signalements');
+      console.error("Erreur lors de la récupération des signalements:", error);
+      setError("Erreur lors de la récupération des signalements");
     }
   };
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
-      alert('Les mots de passe ne correspondent pas');
+      alert("Les mots de passe ne correspondent pas");
       return;
     }
     try {
@@ -73,42 +73,42 @@ const Profils = () => {
         `/api/users/${user.id}`,
         { password: newPassword },
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
-      alert('Mot de passe mis à jour avec succès');
-      setNewPassword('');
-      setConfirmPassword('');
+      alert("Mot de passe mis à jour avec succès");
+      setNewPassword("");
+      setConfirmPassword("");
     } catch (error) {
-      console.error('Erreur lors de la mise à jour du mot de passe:', error);
-      alert('Erreur lors de la mise à jour du mot de passe');
+      console.error("Erreur lors de la mise à jour du mot de passe:", error);
+      alert("Erreur lors de la mise à jour du mot de passe");
     }
   };
 
   const handleDeleteAccount = async () => {
     if (
       window.confirm(
-        'Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.'
+        "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible."
       )
     ) {
       try {
-        console.log('Tentative de suppression du compte utilisateur:', user.id);
+        console.log("Tentative de suppression du compte utilisateur:", user.id);
         const response = await axios.delete(`/api/users/${user.id}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
 
-        console.log('Réponse du serveur:', response);
+        console.log("Réponse du serveur:", response);
 
         if (response.status === 200) {
-          localStorage.removeItem('token');
-          alert('Votre compte a été supprimé avec succès.');
-          navigate('/login');
+          localStorage.removeItem("token");
+          alert("Votre compte a été supprimé avec succès.");
+          navigate("/login");
         } else {
-          throw new Error('Réponse inattendue du serveur');
+          throw new Error("Réponse inattendue du serveur");
         }
       } catch (error) {
         console.error(
-          'Erreur détaillée lors de la suppression du compte:',
+          "Erreur détaillée lors de la suppression du compte:",
           error
         );
 
@@ -126,24 +126,29 @@ const Profils = () => {
           } else {
             alert(
               `Erreur lors de la suppression du compte: ${
-                error.response.data.message || 'Une erreur est survenue'
+                error.response.data.message || "Une erreur est survenue"
               }`
             );
           }
         } else if (error.request) {
-          console.error('Erreur de requête:', error.request);
+          console.error("Erreur de requête:", error.request);
           alert(
-            'Erreur de connexion au serveur. Veuillez réessayer plus tard.'
+            "Erreur de connexion au serveur. Veuillez réessayer plus tard."
           );
         } else {
           console.error(
-            'Erreur de configuration de la requête:',
+            "Erreur de configuration de la requête:",
             error.message
           );
           alert(`Une erreur est survenue: ${error.message}`);
         }
       }
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   if (loading) return <div>Chargement...</div>;
@@ -157,21 +162,31 @@ const Profils = () => {
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Informations utilisateur</h2>
         <p>Login: {user.login}</p>
-        <p>Rôle: {user.role === 1 ? 'Administrateur' : 'Utilisateur'}</p>
+        <p>Rôle: {user.role === 1 ? "Administrateur" : "Étudient"}</p>
       </section>
       {signalements.length > 0 ? (
-  <ul>
-    {signalements.map((signalement) => (
-      <li key={signalement.id} className="mb-2">
-        Catégorie: {signalement.category}, Lieu: {signalement.place},
-        Date: {new Date(signalement.hours).toLocaleDateString()},
-        État: {signalement.isProcessed ? 'Traité' : 'En attente'}
-      </li>
-    ))}
-  </ul>
-) : (
-  <p>Vous n'avez pas encore fait de signalements.</p>
-)}
+        <ul>
+          {signalements.map((signalement) => {
+            const categoryMap = {
+              0: "Moral",
+              1: "Physique",
+              2: "Sexuel",
+              3: "Cyber",
+            };
+            const category = categoryMap[signalement.category] || "Inconnu";
+
+            return (
+              <li key={signalement.id} className="mb-2">
+                Catégorie: {category}, Lieu: {signalement.place}, Date:{" "}
+                {new Date(signalement.hours).toLocaleDateString()}, État:{" "}
+                {signalement.isProcessed ? "Traité" : "En attente"}
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>Vous n'avez pas encore fait de signalements.</p>
+      )}
 
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Changer le mot de passe</h2>
@@ -219,6 +234,18 @@ const Profils = () => {
         >
           Supprimer mon compte
         </button>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold mb-2">Actions</h2>
+        <div className="flex space-x-4">
+          <button
+            onClick={handleLogout}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Déconnexion
+          </button>
+        </div>
       </section>
     </div>
   );

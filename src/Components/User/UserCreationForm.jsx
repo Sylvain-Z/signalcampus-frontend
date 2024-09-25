@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-import './FormCSS.css'; // Assurez-vous que le chemin est correct
+import "./FormCSS.css"; // Assurez-vous que le chemin est correct
 
 const UserCreationForm = () => {
   const [formData, setFormData] = useState({
-    login: '',
-    password: '',
+    login: "",
+    password: "",
   });
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,25 +23,25 @@ const UserCreationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
     if (!validateEmail(formData.login)) {
-      setError('Veuillez entrer une adresse email valide.');
+      setError("Veuillez entrer une adresse email valide.");
       return;
     }
 
     try {
-      const response = await axios.post('/api/signup', formData);
+      const response = await axios.post("/api/signup", formData);
       setSuccess(
-        'Compte créé avec succès ! Vous pouvez maintenant vous connecter.'
+        "Compte créé avec succès ! Vous pouvez maintenant vous connecter."
       );
-      return (window.location.href = '/profil');
+      window.location.href = "/profil"; 
       // setFormData({ login: "", password: "" }); // Réinitialiser le formulaire
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          'Une erreur est survenue lors de la création du compte.'
+          "Une erreur est survenue lors de la création du compte."
       );
     }
   };
