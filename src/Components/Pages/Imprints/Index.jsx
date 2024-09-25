@@ -1,4 +1,3 @@
-import './imprints.css'
 
 function Imprints() {
   return (

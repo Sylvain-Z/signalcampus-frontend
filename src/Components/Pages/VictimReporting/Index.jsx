@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import Logo from "../../../Assets/Images/SignalCampusBlanc.png"
+
 function VictimReporting() {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [error, setError] = useState(null);
@@ -40,7 +42,8 @@ function VictimReporting() {
         <div class="container">
           <input type="checkbox" id="checkbox" className="victim-btn" />
           <label for="checkbox" class="button">
-            <span class="icon">ALERT</span>
+            <img src={Logo} alt="logo" />
+            <span class="icon">ALERTE</span>
           </label>
         </div>
       </section>

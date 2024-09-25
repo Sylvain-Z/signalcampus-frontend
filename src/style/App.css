@@ -55,6 +55,7 @@ h2 {
   text-align: center;
   margin-bottom: 25px;
 }
+
 h3 {
   font-size: 20px;
   margin-bottom: 25px;
@@ -73,11 +74,13 @@ header {
   display: flex;
   justify-content: center;
 }
+
 header img {
   width: 30px;
   display: block;
   margin: auto;
 }
+
 .ctn-logo {
   width: fit-content;
   display: flex;
@@ -85,6 +88,7 @@ header img {
   align-items: center;
   margin-left: 25px;
 }
+
 h1 {
   font-size: 16px;
 }
@@ -104,11 +108,36 @@ nav {
   padding: 15px;
   display: flex;
   justify-content: space-around;
-  border-radius: 25px;
+  border-radius: 15px;
+  background-color: var(--red);
   box-shadow: 11px 11px 22px #141414, -11px -11px 22px var(--red4);
 }
+
 nav img {
   width: 30px;
+}
+
+.menu-ctn {
+  position: absolute;
+  bottom: -50px;
+  background-color: var(--white);
+  color: var(--black);
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.menu-btn {
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+}
+
+.close {
+  color: var(--red);
 }
 
 /* GENERAL */
@@ -149,6 +178,7 @@ nav img {
   box-sizing: border-box;
   box-shadow: inset 2px 2px 0 var(--red3), inset -2px -2px 0px #1c1c1c;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -166,26 +196,26 @@ nav img {
   background-color: transparent;
   background-image: linear-gradient(145deg, #262626, var(--red3));
   z-index: -1;
-  box-shadow: 11px 11px 22px #141414, -11px -11px 22px var(--red4);
+  box-shadow: 11px 11px 22px #3b0101, -11px -11px 22px var(--red4);
 }
 
 .button .icon {
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
 }
 
-.container input:checked + .button {
+.button img {
+  width: 100px;
+}
+
+.container input:checked+.button {
   box-shadow: inset -2px -2px 0 #a04f4f, inset 2px 2px 0 #1c1c1c;
   border: 4px solid rgba(204, 80, 127, 0.954);
   animation: animeBorder 0.3s linear alternate-reverse infinite;
 }
 
-.container input:checked + .button .icon svg {
+.container input:checked+.button .icon svg {
   fill: rgba(156, 72, 118, 0.878);
   animation: animeFill 0.3s linear alternate-reverse infinite;
 }
@@ -204,14 +234,22 @@ nav img {
 
 /* PAGE TEMOIGNAGES */
 
-.reporting-form {
+.reporting-form,
+.form-container, .form-container form {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin: auto;
+  align-items: center;
+}
+ 
+
+.reporting-form .form_input {
+  width: 100%;
 }
 
-.form_input {
+.form_input,
+.form-input {
   height: 4rem;
   border: none;
   border-radius: 1rem;
@@ -229,11 +267,13 @@ option {
   background-color: var(--red3);
 }
 
-.form_input::placeholder {
+.form_input::placeholder,
+.form-input::placeholder {
   color: var(--white);
 }
 
-.form_input:focus {
+.form_input:focus,
+.form-input:focus {
   outline: none;
   box-shadow: 0.3rem 0.3rem 0.6rem var(--red4),
     -0.2rem -0.2rem 0.5rem var(--red2);
@@ -244,7 +284,8 @@ option {
   padding: 10px;
 }
 
-.witness-btn {
+.witness-btn,
+.form-button {
   height: 40px;
   width: fit-content;
   padding: 0 25px;
@@ -274,4 +315,26 @@ option {
 .msg_valid {
   border-bottom: 1px solid var(--green);
   color: var(--green);
+}
+
+
+/* IMPRINTS */
+
+.imprints-section {
+  margin-bottom: 150px;
+}
+
+.imprints-section article {
+  width: 80%;
+  margin: 0 auto 25px auto;
+}
+
+.imprints-section p {
+  line-height: 25px;
+  margin-bottom: 10px;
+}
+
+.imprints-section li {
+  list-style: none;
+  line-height: 25px;
 }

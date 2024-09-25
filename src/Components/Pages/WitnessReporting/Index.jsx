@@ -86,19 +86,19 @@ function WitnessReporting() {
           <option value="3">Cyber</option>
         </select>
 
-        <textarea
-          placeholder="Votre témoignage..."
-          value={reportingContent}
-          onChange={(e) => setReportingContent(e.target.value)}
-          className="form_input form_textarea"
-        />
-
         <input
           placeholder="Où ?"
           type="text"
           value={place}
           onChange={(e) => setPlace(e.target.value)}
           className="form_input"
+        />
+
+        <textarea
+          placeholder="Votre témoignage..."
+          value={reportingContent}
+          onChange={(e) => setReportingContent(e.target.value)}
+          className="form_input form_textarea"
         />
 
         {msg && <p className="msg_valid">{msg}</p>}
