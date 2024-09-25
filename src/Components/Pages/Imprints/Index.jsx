@@ -1,9 +1,7 @@
-import './imprints.css'
-
 function Imprints() {
   return (
     <>
-      <section className='imprints-section'>
+      <section className="imprints-section">
         <h2>Mentions Légales</h2>
         <article>
           <h3>Éditeur de l'Application</h3>

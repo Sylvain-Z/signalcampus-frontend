@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import axios from "axios";
-
-import "./FormCSS.css"; // Assurez-vous que le chemin est correct
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const UserConnexionForm = () => {
   const [formData, setFormData] = useState({
-    login: "",
-    password: "",
+    login: '',
+    password: '',
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -17,37 +15,37 @@ const UserConnexionForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setIsLoading(true);
 
     try {
-      const response = await axios.post("/api/login", formData);
+      const response = await axios.post('/api/login', formData);
 
       const { token, userId, login, role } = response.data;
 
       // Stockage du token
-      localStorage.setItem("token", token);
+      localStorage.setItem('token', token);
 
       // Stockage des informations de l'utilisateur (optionnel)
-      localStorage.setItem("userId", userId);
-      localStorage.setItem("userLogin", login);
-      localStorage.setItem("userRole", role);
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('userLogin', login);
+      localStorage.setItem('userRole', role);
 
       // Configurer axios pour inclure le token dans les futures requêtes
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       // Redirection ou mise à jour de l'état de l'application
       if (role === 1) {
-        window.location.href = "/admin";
+        window.location.href = '/admin';
       } else {
-        window.location.href = "/profil";
+        window.location.href = '/profil';
       }
       // Exemple de redirection (nécessite react-router) :
       // history.push('/dashboard');
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          "Échec de la connexion. Veuillez vérifier vos identifiants."
+          'Échec de la connexion. Veuillez vérifier vos identifiants.'
       );
     } finally {
       setIsLoading(false);
@@ -88,7 +86,7 @@ const UserConnexionForm = () => {
           />
         </div>
         <button type="submit" className="form-button" disabled={isLoading}>
-          {isLoading ? "Connexion en cours..." : "Se connecter"}
+          {isLoading ? 'Connexion en cours...' : 'Se connecter'}
         </button>
       </form>
     </div>

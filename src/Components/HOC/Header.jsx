@@ -1,20 +1,20 @@
-import { Link } from "react-router-dom";
-import "./header.css";
+import { Link, useLocation } from 'react-router-dom';
+
+import Logo from '../../Assets/Images/faviconblanc.png';
 
 function Header() {
+  const location = useLocation();
+
   return (
     <>
       <header>
         <Link to="/">
-          <div className="ctn-logo">
-            <img
-              src="./favicon.ico"
-              alt="logo"
-              className="header-img"
-              title="faire un signalement"
-            />
-            <h1>SignalCampus</h1>
-          </div>
+          <img
+            src={Logo}
+            alt="logo"
+            className="header-img"
+            title="faire un signalement"
+          />
         </Link>
       </header>
     </>
