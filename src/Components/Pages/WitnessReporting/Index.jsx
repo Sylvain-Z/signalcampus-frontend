@@ -1,96 +1,116 @@
-import { useState } from "react"
-import './witnessReporting.css'
+import { useState } from "react";
+import "./witnessReporting.css";
 
 function WitnessReporting() {
+  const [email, setEmail] = useState("");
+  const [category, setCategory] = useState("");
+  const [reportingContent, setReportingContent] = useState("");
+  const [place, setPlace] = useState("");
+  const [msg, setMsg] = useState("");
+  const [error, setError] = useState("");
 
-  const [email, setEmail] = useState(null)
-  const [harasementCategorie, setHarasementCategorie] = useState(null)
-  const [reportingContent, setReportingContent] = useState(null)
-  const [place, setPlace] = useState(null)
-  const [msg, setMsg] = useState(null)
-  const [msg2, setMsg2] = useState(null)
-
-  const handlesubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setMsg("");
+    setError("");
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (emailRegex.test(email)) {
-      if (harasementCategorie && reportingContent && place) {
-
-        // soumission de formulaire
-
-        setMsg('Signalement envoyé')
-        setMsg2('')
-
-      } else {
-        setMsg('')
-        setMsg2('Tous les champs sont requis')
-      }
-    } else {
-      setMsg('')
-      setMsg2('Adresse mail non valide')
+    if (!emailRegex.test(email)) {
+      setError("Adresse mail non valide");
+      return;
     }
-  }
+
+    if (!category || !reportingContent || !place) {
+      setError("Tous les champs sont requis");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setError("Vous devez être connecté pour créer un signalement");
+        return;
+      }
+
+      const response = await axios.post(
+        "/api/signalements",
+        {
+          category: parseInt(category),
+          place,
+          reportingContent,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setMsg("Signalement envoyé avec succès");
+      // Réinitialiser le formulaire
+      setEmail("");
+      setCategory("");
+      setReportingContent("");
+      setPlace("");
+    } catch (error) {
+      setError(
+        error.response?.data?.message ||
+          "Une erreur est survenue lors de l'envoi du signalement"
+      );
+    }
+  };
 
   return (
-    <>
-      <section className="reporting-ctn">
-        <h2 className="reporting-h2">Formulaire de Signalement</h2>
+    <section className="reporting-ctn">
+      <h2 className="reporting-h2">Formulaire de Signalement</h2>
 
-        <form onSubmit={handlesubmit} className="reporting-form">
+      <form onSubmit={handleSubmit} className="reporting-form">
+        <input
+          placeholder="Votre email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="form_input"
+          required
+        />
 
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="form_input"
+          required
+        >
+          <option value="" disabled>
+            Type de harcèlement
+          </option>
+          <option value="0">Moral</option>
+          <option value="1">Physique</option>
+          <option value="2">Sexuel</option>
+          <option value="3">Cyber</option>
+        </select>
 
-          <input
-             
-            placeholder="Votre email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form_input"
-          />
+        <textarea
+          placeholder="Votre témoignage..."
+          value={reportingContent}
+          onChange={(e) => setReportingContent(e.target.value)}
+          className="form_input form_textarea"
+          required
+        />
 
-          <select
-             
-            name="harasementCategorie"
-            onChange={(e) => setHarasementCategorie(e.target.value)}
-            className="form_input"
-          >
-            <option value="rien" selected disabled >Type de harcèlement</option>
-            <option value="moral">Moral</option>
-            <option value="physique">Physique</option>
-            <option value="sexuel">Sexuel</option>
-            <option value="cyber">Cyber</option>
-          </select>
+        <input
+          placeholder="Où ?"
+          type="text"
+          value={place}
+          onChange={(e) => setPlace(e.target.value)}
+          className="form_input"
+          required
+        />
 
-          <textarea
-             
-            placeholder="Votre témoignage..."
-            type="text"
-            name="reportingContent"
-            value={reportingContent}
-            onChange={(e) => setReportingContent(e.target.value)}
-            className="form_input form_textarea"
-          />
-          <input
-             
-            placeholder="Où ?"
-            type="text"
-            name="place"
-            value={place}
-            onChange={(e) => setPlace(e.target.value)}
-            className="form_input"
-          />
-          
-          {msg && <p className="msg_valid">{msg}</p>}
-          {msg2 && <p className="msg_invalid">{msg2}</p>}
+        {msg && <p className="msg_valid">{msg}</p>}
+        {error && <p className="msg_invalid">{error}</p>}
 
-          <button type="submit">Signaler !</button>
-        </form>
-      </section>
-      
-    </>
+        <button type="submit">Signaler !</button>
+      </form>
+    </section>
   );
 }
 
