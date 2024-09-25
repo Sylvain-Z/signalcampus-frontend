@@ -1,41 +1,41 @@
-import { useState } from "react";
-import "./witnessReporting.css";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
+import './reporting.css';
 
-function WitnessReporting() {
-  const [email, setEmail] = useState("");
-  const [category, setCategory] = useState("");
-  const [reportingContent, setReportingContent] = useState("");
-  const [place, setPlace] = useState("");
-  const [msg, setMsg] = useState("");
-  const [error, setError] = useState("");
+function ReportingForm() {
+  const [email, setEmail] = useState('');
+  const [category, setCategory] = useState('');
+  const [reportingContent, setReportingContent] = useState('');
+  const [place, setPlace] = useState('');
+  const [msg, setMsg] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMsg("");
-    setError("");
+    setMsg('');
+    setError('');
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
-      setError("Adresse mail non valide");
+      setError('Adresse mail non valide');
       return;
     }
 
     if (!category || !reportingContent || !place) {
-      setError("Tous les champs sont requis");
+      setError('Tous les champs sont requis');
       return;
     }
 
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
       if (!token) {
-        setError("Vous devez être connecté pour créer un signalement");
+        setError('Vous devez être connecté pour créer un signalement');
         return;
       }
 
       const response = await axios.post(
-        "/api/signalements",
+        '/api/signalements',
         {
           category: parseInt(category),
           place,
@@ -46,12 +46,12 @@ function WitnessReporting() {
         }
       );
 
-      setMsg("Signalement envoyé avec succès");
+      setMsg('Signalement envoyé avec succès');
       // Réinitialiser le formulaire
-      setEmail("");
-      setCategory("");
-      setReportingContent("");
-      setPlace("");
+      setEmail('');
+      setCategory('');
+      setReportingContent('');
+      setPlace('');
     } catch (error) {
       setError(
         error.response?.data?.message ||
@@ -115,4 +115,4 @@ function WitnessReporting() {
   );
 }
 
-export default WitnessReporting;
+export default ReportingForm;

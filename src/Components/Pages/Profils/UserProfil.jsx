@@ -23,6 +23,7 @@ const Profils = () => {
     const userId = decodedToken.userId; // Assurez-vous que c'est le bon nom de la propriété dans votre token
 
     fetchUserData(userId);
+    fetchUserSignalements(userId);
   }, [navigate]);
 
   const fetchUserData = async (userId) => {
@@ -52,7 +53,7 @@ const Profils = () => {
 
   const fetchUserSignalements = async (userId) => {
     try {
-      const response = await axios.get(`/api/signalements/${userId}`, {
+      const response = await axios.get(`/api/users/${userId}/signalements`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setSignalements(response.data);
@@ -61,7 +62,6 @@ const Profils = () => {
       setError('Erreur lors de la récupération des signalements');
     }
   };
-
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
@@ -159,23 +159,19 @@ const Profils = () => {
         <p>Login: {user.login}</p>
         <p>Rôle: {user.role === 1 ? 'Administrateur' : 'Utilisateur'}</p>
       </section>
-
-      <section className="mb-8">
-        <h2 className="text-xl font-semibold mb-2">Mes signalements</h2>
-        {console.log(signalements)}
-        {signalements.length > 0 ? (
-          <ul>
-            {signalements.map((signalement) => (
-              <li key={signalement.id} className="mb-2">
-                Catégorie: {signalement.category}, Lieu: {signalement.place},
-                Date: {new Date(signalement.hours).toLocaleDateString()}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Vous n'avez pas encore fait de signalements.</p>
-        )}
-      </section>
+      {signalements.length > 0 ? (
+  <ul>
+    {signalements.map((signalement) => (
+      <li key={signalement.id} className="mb-2">
+        Catégorie: {signalement.category}, Lieu: {signalement.place},
+        Date: {new Date(signalement.hours).toLocaleDateString()},
+        État: {signalement.isProcessed ? 'Traité' : 'En attente'}
+      </li>
+    ))}
+  </ul>
+) : (
+  <p>Vous n'avez pas encore fait de signalements.</p>
+)}
 
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Changer le mot de passe</h2>

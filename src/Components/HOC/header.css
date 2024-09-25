@@ -1,8 +1,6 @@
 header {
   width: 100vw;
   padding: 15px 0;
-  display: flex;
-  justify-content: space-between;
 }
 
 .ctn-logo {
