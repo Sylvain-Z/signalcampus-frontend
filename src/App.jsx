@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// imports des composants
 /* Pages tout publique */
 import HOC from "./Components/HOC/Index";
 import VictimReporting from "./Components/Pages/VictimReporting/Index";
@@ -13,6 +14,8 @@ import UserConnexionForm from "./Components/User/UserConnexionForm";
 
 function App() {
   return (
+
+    // Création des routes vers les différentes URL
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HOC child={VictimReporting} />} />

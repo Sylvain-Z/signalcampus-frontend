@@ -105,7 +105,7 @@ function WitnessReporting() {
         {error && <p className="msg_invalid">{error}</p>}
 
         <button type="submit" className="witness-btn">
-          Signaler !
+          Signaler
         </button>
       </form>
     </section>

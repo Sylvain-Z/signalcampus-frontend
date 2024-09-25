@@ -13,6 +13,7 @@
   --red2: #4e0500;
   --red3: #6d0902;
   --red4: #570c07;
+  --red5: #3f0905;
   --green: #039508;
 }
 
@@ -120,14 +121,15 @@ nav img {
 .menu-ctn {
   position: absolute;
   bottom: -50px;
-  background-color: var(--white);
+  background-color: var(--red);
   color: var(--black);
-  height: 80vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 25px;
+  box-shadow: 11px 11px 22px #3b0101, -11px -11px 22px var(--red4);
 }
 
 .menu-btn {
@@ -137,7 +139,30 @@ nav img {
 }
 
 .close {
-  color: var(--red);
+  color: var(--white);
+}
+
+.menu-ctn div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-ctn div p {
+  background-color: var(--red4);
+  color: var(--white);
+  width: fit-content;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 25px 0;
+  box-shadow: inset 0.2rem 0.2rem 0.5rem var(--red2),
+    inset -0.2rem -0.2rem 0.5rem var(--red3);
+  box-shadow: 0.3rem 0.3rem 0.6rem var(--red5),
+    -0.2rem -0.2rem 0.5rem var(--red5);
+}
+
+#imprints-links {
+  color: var(--white);
 }
 
 /* GENERAL */
@@ -152,6 +177,15 @@ nav img {
 }
 
 /* PAGE SIGNALEMENT INSTANTANE (VICTIM) */
+
+.warning {
+  width: 80%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: var(--red);
+  box-shadow: 11px 11px 22px #141414, -11px -11px 22px var(--red4);
+}
 
 .victim-ctn {
   margin-top: 75px;
@@ -235,14 +269,15 @@ nav img {
 /* PAGE TEMOIGNAGES */
 
 .reporting-form,
-.form-container, .form-container form {
+.form-container,
+.form-container form {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin: auto;
   align-items: center;
 }
- 
+
 
 .reporting-form .form_input {
   width: 100%;
@@ -290,9 +325,9 @@ option {
   width: fit-content;
   padding: 0 25px;
   margin: auto;
-  background-color: var(--white);
   border: none;
   border-radius: 15px;
+  box-shadow: none;
 }
 
 .witness-btn:hover {
@@ -315,6 +350,10 @@ option {
 .msg_valid {
   border-bottom: 1px solid var(--green);
   color: var(--green);
+}
+
+.alert_msg {
+  margin-top: 25px;
 }
 
 

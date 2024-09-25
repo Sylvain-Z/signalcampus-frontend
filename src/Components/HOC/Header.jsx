@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-import Logo from "../../Assets/Images/faviconblanc.png"
+import Logo from "../../Assets/Images/faviconblanc.png";
 
 function Header() {
   const location = useLocation();
@@ -8,14 +8,24 @@ function Header() {
   return (
     <>
       <header>
-        <Link to="/">
-          <img
-            src={Logo}
-            alt="logo"
-            className="header-img"
-            title="faire un signalement"
-          />
-        </Link>
+        {location.pathname === "/" ? (
+          <>
+            <p className="warning">
+              En cas de comportement problématique, appuyez en dessous
+            </p>
+          </>
+        ) : (
+          <>
+            <Link to="/">
+              <img
+                src={Logo}
+                alt="logo"
+                className="header-img"
+                title="faire un signalement"
+              />
+            </Link>
+          </>
+        )}
       </header>
     </>
   );
