@@ -35,7 +35,7 @@ function WitnessReporting() {
       }
 
       const response = await axios.post(
-        "/api/signalements",
+        "http://localhost:3000/api/signalements",
         {
           category: parseInt(category),
           place,

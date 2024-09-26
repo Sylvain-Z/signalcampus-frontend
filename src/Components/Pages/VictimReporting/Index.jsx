@@ -20,7 +20,7 @@ function VictimReporting() {
       };
 
       const response = await axios.post(
-        "/api/signalements/urgent",
+        "http://localhost:3000/api/signalements/urgent",
         signalementData
       );
       console.log("Signalement urgent envoyé avec succès:", response.data);

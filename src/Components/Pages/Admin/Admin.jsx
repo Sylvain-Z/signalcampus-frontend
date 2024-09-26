@@ -25,7 +25,7 @@ const Admin = () => {
   }, [navigate]);
   const checkUserRole = async (userId) => {
     try {
-      const response = await axios.get(`/api/users/${userId}`, {
+      const response = await axios.get(`http://localhost:3000/api/users/${userId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setUserRole(response.data.role);
@@ -46,7 +46,7 @@ const Admin = () => {
 
   const fetchSignalements = async () => {
     try {
-      const response = await axios.get("/api/signalements", {
+      const response = await axios.get("http://localhost:3000/api/signalements", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setSignalements(response.data);
@@ -57,14 +57,14 @@ const Admin = () => {
 
   const handleSignalementClick = async (id) => {
     try {
-      const response = await axios.get(`/api/signalements/${id}`, {
+      const response = await axios.get(`http://localhost:3000/api/signalements/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const signalementData = response.data;
 
       // Récupérer les informations de l'utilisateur
       const userResponse = await axios.get(
-        `/api/users/${signalementData.idUser}`,
+        `http:///api/users/${signalementData.idUser}`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
@@ -82,7 +82,7 @@ const Admin = () => {
   const handleUpdateSignalement = async (id) => {
     try {
       await axios.put(
-        `/api/signalements/${id}`,
+        `http://localhost:3000/api/signalements/${id}`,
         { isProcessed: true },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -97,7 +97,7 @@ const Admin = () => {
 
   const handleDeleteSignalement = async (id) => {
     try {
-      await axios.delete(`/api/signalements/${id}`, {
+      await axios.delete(`http://localhost:3000/api/signalements/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       fetchSignalements();

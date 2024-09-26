@@ -21,7 +21,7 @@ const UserConnexionForm = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("/api/login", formData);
+      const response = await axios.post("http://localhost:3000/api/login", formData);
 
       const { token, userId, login, role } = response.data;
 
@@ -45,9 +45,10 @@ const UserConnexionForm = () => {
       // Exemple de redirection (nécessite react-router) :
       // history.push('/dashboard');
     } catch (err) {
+      console.error('Erreur complète:', err);
       setError(
         err.response?.data?.message ||
-          "Échec de la connexion. Veuillez vérifier vos identifiants."
+        `Échec de la connexion. Status: ${err.response?.status}. Détails: ${JSON.stringify(err.response?.data)}`
       );
     } finally {
       setIsLoading(false);
@@ -58,7 +59,7 @@ const UserConnexionForm = () => {
     <div className="form-container">
       <h2 className="form-title">Connexion</h2>
       {error && <div className="error-message">{error}</div>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="test">
         <div className="form-group">
           {/* <label htmlFor="login" className="form-label">
             Identifiant :

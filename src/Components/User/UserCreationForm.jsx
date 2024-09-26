@@ -32,7 +32,7 @@ const UserCreationForm = () => {
     }
 
     try {
-      const response = await axios.post("/api/signup", formData);
+      const response = await axios.post("http://localhost:3000/api/signup", formData);
       setSuccess(
         "Compte créé avec succès ! Vous pouvez maintenant vous connecter."
       );

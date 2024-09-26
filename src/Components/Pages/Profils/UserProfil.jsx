@@ -28,7 +28,7 @@ const Profils = () => {
 
   const fetchUserData = async (userId) => {
     try {
-      const response = await axios.get(`/api/users/${userId}`, {
+      const response = await axios.get(`http://localhost:3000/api/users/${userId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       if (response.data && response.data.id) {
@@ -53,7 +53,7 @@ const Profils = () => {
 
   const fetchUserSignalements = async (userId) => {
     try {
-      const response = await axios.get(`/api/users/${userId}/signalements`, {
+      const response = await axios.get(`http://localhost:3000/api/users/${userId}/signalements`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setSignalements(response.data);
@@ -70,7 +70,7 @@ const Profils = () => {
     }
     try {
       await axios.put(
-        `/api/users/${user.id}`,
+        `http://localhost:3000/api/users/${user.id}`,
         { password: newPassword },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -93,7 +93,7 @@ const Profils = () => {
     ) {
       try {
         console.log("Tentative de suppression du compte utilisateur:", user.id);
-        const response = await axios.delete(`/api/users/${user.id}`, {
+        const response = await axios.delete(`http://localhost:3000/api/users/${user.id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
 
