@@ -61,8 +61,8 @@ function WitnessReporting() {
   };
 
   return (
-    <section className="reporting-ctn">
-      <h2 className="reporting-h2">Formulaire de Signalement</h2>
+    <section className="reporting-ctn witness-ctn">
+      <h2 className="reporting-h2">Témoigner</h2>
 
       <form onSubmit={handleSubmit} className="reporting-form">
         <input

@@ -23,10 +23,20 @@ function VictimReporting() {
         "/api/signalements/urgent",
         signalementData
       );
+      console.log("Réponse reçue du serveur:", response.data);
       console.log("Signalement urgent envoyé avec succès:", response.data);
       // Ajouter ici la logique pour informer l'utilisateur que le signalement a été envoyé
     } catch (error) {
-      console.error("Erreur lors de l'envoi du signalement urgent:", error);
+      console.error("Erreur détaillée:", error);
+      if (error.response) {
+        console.error("Données de la réponse d'erreur:", error.response.data);
+        console.error("Statut de l'erreur:", error.response.status);
+        console.error("En-têtes de l'erreur:", error.response.headers);
+      } else if (error.request) {
+        console.error("Erreur de requête:", error.request);
+      } else {
+        console.error("Message d'erreur:", error.message);
+      }
       setError(
         "Erreur lors de l'envoi du signalement urgent. Veuillez réessayer."
       );
