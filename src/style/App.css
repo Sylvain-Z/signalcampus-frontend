@@ -9,10 +9,10 @@
   --greyDark: #9baacf;
   --greyDark2: #4b5368;
 
-  --red: #5f0701;
+  --red: #6a0700;
   --red2: #4e0500;
   --red3: #6d0902;
-  --red4: #570c07;
+  --red4: #ce323225;
   --green: #039508;
 }
 
@@ -28,7 +28,7 @@ html {
 
 body {
   font-size: 16px;
-  font-family: 'open sans', sans-serif;
+  font-family: "open sans", sans-serif;
   color: var(--white);
   background-color: var(--red);
 }
@@ -103,14 +103,16 @@ footer {
 }
 
 nav {
-  width: 80%;
+  width: 60%;
+  min-height: 65px;
   margin: auto;
   padding: 15px;
   display: flex;
+  align-items: center;
   justify-content: space-around;
   border-radius: 15px;
   background-color: var(--red);
-  box-shadow: 11px 11px 22px #141414, -11px -11px 22px var(--red4);
+  box-shadow: 5px 5px 15px #380505, -10px -10px 15px var(--red4);
 }
 
 nav img {
@@ -174,9 +176,9 @@ nav img {
   border-radius: 50%;
   border: 4px solid var(--red3);
   background-color: transparent;
-  background-image: linear-gradient(145deg, var(--red3), var(--red4));
+  background-image: linear-gradient(145deg, var(--red), var(--red));
   box-sizing: border-box;
-  box-shadow: inset 2px 2px 0 var(--red3), inset -2px -2px 0px #1c1c1c;
+  box-shadow: inset 2px 2px 0 var(--red4), inset -2px -2px 0px #380505;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,14 +191,14 @@ nav img {
 
 .button::before {
   position: absolute;
-  content: '';
+  content: "";
   width: 300px;
   height: 300px;
   border-radius: inherit;
   background-color: transparent;
-  background-image: linear-gradient(145deg, #262626, var(--red3));
+  background-image: linear-gradient(145deg, #262626, var(--red));
   z-index: -1;
-  box-shadow: 11px 11px 22px #3b0101, -11px -11px 22px var(--red4);
+  box-shadow: 11px 11px 22px #380505, -11px -11px 22px var(--red4);
 }
 
 .button .icon {

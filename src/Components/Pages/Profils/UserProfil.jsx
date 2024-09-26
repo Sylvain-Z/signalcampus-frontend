@@ -172,6 +172,7 @@ const Profils = () => {
               1: "Physique",
               2: "Sexuel",
               3: "Cyber",
+              4: "URGENT",
             };
             const category = categoryMap[signalement.category] || "Inconnu";
 

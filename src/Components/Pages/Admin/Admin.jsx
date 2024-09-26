@@ -116,6 +116,7 @@ const Admin = () => {
     1: "Physique",
     2: "Sexuel",
     3: "Cyber",
+    4: "URGENT",
   };
 
   return (

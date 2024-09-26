@@ -1,53 +1,64 @@
-import { useState, useEffect } from 'react';
-
-import Logo from '../../../Assets/Images/SignalCampusBlanc.png';
+import React, { useState } from "react";
+import axios from "axios";
+import Logo from "../../../Assets/Images/SignalCampusBlanc.png";
 
 function VictimReporting() {
-  const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [error, setError] = useState(null);
+  const [isGeolocationEnabled, setIsGeolocationEnabled] = useState(false);
 
-  // Fonction pour récupérer la géolocalisation
-  /*   const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-        },
-        (error) => {
-          setError(error.message);
-        }
-      );
-    } else {
-      setError("La géolocalisation n'est pas supportée par votre navigateur.");
-    }
-  }; */
-
-  // Utilisation d'un effet pour récupérer la géolocalisation au montage du composant
-  /*   useEffect(() => {
-    getLocation();
-  }, []); */
-
-  console.log(location, error);
-
-  const handlesubmit = (e) => {
+  const toggleGeolocation = () => {
+    setIsGeolocationEnabled(!isGeolocationEnabled);
+    setError(null);
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      let signalementData = {
+        isUrgent: true,
+        locality: "Non spécifié",
+        // Vous pouvez ajouter latitude et longitude ici si vous les avez
+      };
+
+      const response = await axios.post(
+        "/api/signalements/urgent",
+        signalementData
+      );
+      console.log("Signalement urgent envoyé avec succès:", response.data);
+      // Ajouter ici la logique pour informer l'utilisateur que le signalement a été envoyé
+    } catch (error) {
+      console.error("Erreur lors de l'envoi du signalement urgent:", error);
+      setError(
+        "Erreur lors de l'envoi du signalement urgent. Veuillez réessayer."
+      );
+    }
   };
 
   return (
-    <>
-      <section className="reporting-ctn victim-ctn">
-        <div class="container">
-          <input type="checkbox" id="checkbox" className="victim-btn" />
-          <label for="checkbox" class="button">
-            <img src={Logo} alt="logo" />
-            <span class="icon">ALERTE</span>
+    <section className="reporting-ctn victim-ctn">
+      <div className="container">
+        {/* <div className="geolocation-toggle">
+          <label>
+            <input
+              type="checkbox"
+              checked={isGeolocationEnabled}
+              onChange={toggleGeolocation}
+            />
+            Utiliser la géolocalisation
           </label>
-        </div>
-      </section>
-    </>
+        </div> */}
+        <input
+          type="checkbox"
+          id="checkbox"
+          className="victim-btn"
+          onChange={handleSubmit}
+        />
+        <label htmlFor="checkbox" className="button">
+          <img src={Logo} alt="logo" />
+          <span className="icon">ALERTE</span>
+        </label>
+      </div>
+      {/* {error && <p className="error-message">{error}</p>} */}
+    </section>
   );
 }
 

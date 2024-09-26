@@ -18,8 +18,11 @@ function App() {
         <Route path="/admin" element={<HOC child={Admin} />} />
         <Route path="/temoin" element={<HOC child={ReportingForm} />} />
         <Route path="/mentions-legales" element={<HOC child={Imprints} />} />
-        <Route path="/login" element={<HOC child={UserConnexionForm} />} />
-        <Route path="/signup" element={<HOC child={UserCreationForm} />} />
+        <Route path="/connexion" element={<HOC child={UserConnexionForm} />} />
+        <Route
+          path="/enregistrement"
+          element={<HOC child={UserCreationForm} />}
+        />
         <Route path="/profil" element={<HOC child={Profils} />} />
       </Routes>
     </BrowserRouter>
