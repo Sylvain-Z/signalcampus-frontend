@@ -14,6 +14,8 @@ function ReportingForm() {
     setMsg('');
     setError('');
 
+    // Vérification du format d'adresse mail entrer dans le formulaire
+
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
@@ -21,6 +23,7 @@ function ReportingForm() {
       return;
     }
 
+    // Vérifier que les champs du formulaire ne sont pas vides
     if (!category || !reportingContent || !place) {
       setError('Tous les champs sont requis');
       return;
@@ -88,14 +91,6 @@ function ReportingForm() {
           <option value="3">Cyber</option>
         </select>
 
-        <textarea
-          placeholder="Votre témoignage..."
-          value={reportingContent}
-          onChange={(e) => setReportingContent(e.target.value)}
-          className="form_input form_textarea"
-          required
-        />
-
         <input
           placeholder="Où ?"
           type="text"
@@ -105,10 +100,18 @@ function ReportingForm() {
           required
         />
 
+        <textarea
+          placeholder="Votre témoignage..."
+          value={reportingContent}
+          onChange={(e) => setReportingContent(e.target.value)}
+          className="form_input form_textarea"
+          required
+        />
+
         {msg && <p className="msg_valid">{msg}</p>}
         {error && <p className="msg_invalid">{error}</p>}
 
-        <button type="submit">Signaler !</button>
+        <button type="submit" className='witness-btn'>Signaler !</button>
       </form>
     </section>
   );

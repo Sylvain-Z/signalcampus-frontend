@@ -37,11 +37,6 @@ function VictimReporting() {
     }
   }, [isGeolocationEnabled]);
 
-  const toggleGeolocation = () => {
-    setIsGeolocationEnabled(!isGeolocationEnabled);
-    setError(null);
-  };
-
   const handleSubmit = async () => {
     try {
       let signalementData = {
@@ -53,7 +48,7 @@ function VictimReporting() {
         signalementData.latitude = location.latitude;
         signalementData.longitude = location.longitude;
       }
-
+      // Requête API
       const response = await axios.post(
         'http://localhost:3000/api/signalements/urgent',
         signalementData
@@ -106,14 +101,6 @@ function VictimReporting() {
   return (
     <section className="reporting-ctn victim-ctn">
       <div className="geolocation-toggle">
-        {/* <label>
-          <input
-            type="checkbox"
-            checked={isGeolocationEnabled}
-            onChange={toggleGeolocation}
-          />
-          Utiliser la géolocalisation
-        </label> */}
       </div>
       <div className="container">
         <input

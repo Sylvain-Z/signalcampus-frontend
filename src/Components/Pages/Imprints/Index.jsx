@@ -12,17 +12,17 @@ function Imprints() {
           <ul>
             <li>Justine Alvarez - Chargée de Marketing</li>
             <li>Ambre Junus - Administratrice Système et Réseau</li>
-            <li>Dylan Vivan - Développeur</li>
+            <li>Dylan Vivant - Développeur Fullstack</li>
             <li>Sylvain Zoogones - Développeur Fullstack</li>
           </ul>
         </article>
         <article>
           <h3>Hébergement</h3>
           <p>
-            L'application est hébergée par [Nom de l'Hébergeur], dont le siège
-            social est situé à [adresse de l'hébergeur].
+            L'application est hébergée par localhost, dont le siège
+            social est situé à 7 Rue Jean-Marie Leclair, 69009 Lyon.
           </p>
-          <p>Contact : [email de l'hébergeur]</p>
+          <p>Contact : localhost@ecoles-epsi.net</p>
         </article>
         <article>
           <h3>Objet de l'Application</h3>
@@ -83,7 +83,7 @@ function Imprints() {
           </ul>
           <p>
             Pour toute demande relative à vos données personnelles, vous pouvez
-            nous contacter à l'adresse suivante : [adresse e-mail de contact].
+            nous contacter à l'adresse suivante : localhost@ecoles-epsi.net.
           </p>
         </article>
         <article>
@@ -119,7 +119,7 @@ function Imprints() {
           <p>
             Pour toute question ou réclamation concernant l'utilisation de
             l'application ou les présentes mentions légales, vous pouvez nous
-            écrire à l'adresse suivante : [adresse e-mail de contact].
+            écrire à l'adresse suivante : localhost@ecoles-epsi.net.
           </p>
         </article>
       </section>
