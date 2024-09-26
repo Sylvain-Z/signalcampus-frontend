@@ -1,0 +1,142 @@
+.admin-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+.admin-subtitle {
+  font-size: 20px;
+  font-weight: semibold;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.admin-error {
+  background-color: var(--red4);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.admin-content {
+  background-color: var(--red);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.signalement-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.signalement-item {
+  margin-bottom: 10px;
+  border: 1px solid var(--red3);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.signalement-header {
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--red2);
+  transition: background-color 0.3s ease;
+}
+
+.signalement-header:hover {
+  background-color: var(--red2);
+}
+
+.signalement-header.active {
+  background-color: var(--red2);
+}
+
+.signalement-status {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.signalement-status.processed {
+  background-color: var(--green);
+}
+
+.signalement-status.unprocessed {
+  background-color: #ffa500;
+}
+
+.signalement-details {
+  padding: 15px;
+  background-color: var(--red4);
+  border-top: 1px solid var(--red3);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.signalement-details p {
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.signalement-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.button-signalement {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.button-signalement:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-process {
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.button-process:hover:not(:disabled) {
+  background-color: #027b06;
+}
+
+.button-delete {
+  background-color: #f44336;
+  color: var(--white);
+}
+
+.button-delete:hover {
+  background-color: #d32f2f;
+}
