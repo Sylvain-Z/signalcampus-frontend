@@ -2,10 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 
 function WitnessReporting() {
+  // gère le contenu des champs du formulaires
   const [email, setEmail] = useState("");
   const [category, setCategory] = useState("");
   const [reportingContent, setReportingContent] = useState("");
   const [place, setPlace] = useState("");
+  // gère l'affichage du message
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
 
@@ -14,6 +16,7 @@ function WitnessReporting() {
     setMsg("");
     setError("");
 
+    // vérification du format du mail
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
@@ -21,18 +24,20 @@ function WitnessReporting() {
       return;
     }
 
+    // vérification du remplissage des champs du formulaire
     if (!category || !reportingContent || !place) {
       setError("Tous les champs sont requis");
       return;
     }
 
+    // vérification de la connexion de l'utilisateur pour l'envoie d'un témoignage
     try {
       const token = localStorage.getItem("token");
       if (!token) {
         setError("Vous devez être connecté pour créer un signalement");
         return;
       }
-
+      // requête API pour envoyer un signalement
       const response = await axios.post(
         "/api/signalements",
         {
