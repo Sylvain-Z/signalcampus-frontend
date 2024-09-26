@@ -64,7 +64,7 @@ const Admin = () => {
 
       // Récupérer les informations de l'utilisateur
       const userResponse = await axios.get(
-        `http:///api/users/${signalementData.idUser}`,
+        `http://localhost:3000/api/users/${signalementData.idUser}`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
