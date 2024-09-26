@@ -13,6 +13,7 @@
   --red2: #4e0500;
   --red3: #6d0902;
   --red4: #ce323225;
+  --red5: #380505;
   --green: #039508;
 }
 
@@ -112,7 +113,7 @@ nav {
   justify-content: space-around;
   border-radius: 15px;
   background-color: var(--red);
-  box-shadow: 5px 5px 15px #380505, -10px -10px 15px var(--red4);
+  box-shadow: 5px 5px 15px var(--red5), -10px -10px 15px var(--red4);
 }
 
 nav img {
@@ -122,14 +123,15 @@ nav img {
 .menu-ctn {
   position: absolute;
   bottom: -50px;
-  background-color: var(--white);
+  background-color: var(--red);
   color: var(--black);
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 25px;
+  box-shadow: 5px 5px 15px var(--red5), -11px -11px 15px var(--red4);
 }
 
 .menu-btn {
@@ -139,7 +141,28 @@ nav img {
 }
 
 .close {
-  color: var(--red);
+  color: var(--white);
+}
+
+.menu-ctn div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-ctn div p {
+  background-color: var(--red);
+  color: var(--white);
+  width: fit-content;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 25px 0;
+
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--red5), -1rem -1rem 1rem var(--red);
+}
+
+#imprints-links {
+  color: var(--white);
 }
 
 /* GENERAL */
@@ -154,6 +177,15 @@ nav img {
 }
 
 /* PAGE SIGNALEMENT INSTANTANE (VICTIM) */
+
+.warning {
+  width: 80%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: var(--red);
+  box-shadow: 11px 11px 22px var(--red5), -11px -11px 22px var(--red4);
+}
 
 .victim-ctn {
   margin-top: 75px;
@@ -174,11 +206,11 @@ nav img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 4px solid var(--red3);
+  border: 8px solid var(--black);
   background-color: transparent;
-  background-image: linear-gradient(145deg, var(--red), var(--red));
+  background-image: linear-gradient(145deg, var(--red5), var(--red3));
   box-sizing: border-box;
-  box-shadow: inset 2px 2px 0 var(--red4), inset -2px -2px 0px #380505;
+  box-shadow: inset 4px 4px 0 var(--white), inset -4px -4px 0px var(--red5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -196,9 +228,10 @@ nav img {
   height: 300px;
   border-radius: inherit;
   background-color: transparent;
-  background-image: linear-gradient(145deg, #262626, var(--red));
+  background-image: linear-gradient(145deg, var(--red3), var(--red4));
+
   z-index: -1;
-  box-shadow: 11px 11px 22px #380505, -11px -11px 22px var(--red4);
+  box-shadow: 22px 22px 30px #310000, -22px -22px 30px #8f2323;
 }
 
 .button .icon {
@@ -212,14 +245,9 @@ nav img {
 }
 
 .container input:checked + .button {
-  box-shadow: inset -2px -2px 0 #a04f4f, inset 2px 2px 0 #1c1c1c;
-  border: 4px solid rgba(204, 80, 127, 0.954);
+  box-shadow: inset -4px -4px 0 var(--red4), inset 4px 4px 0 var(--red5);
+  border: 8px solid rgba(204, 80, 127, 0.954);
   animation: animeBorder 0.3s linear alternate-reverse infinite;
-}
-
-.container input:checked + .button .icon svg {
-  fill: rgba(156, 72, 118, 0.878);
-  animation: animeFill 0.3s linear alternate-reverse infinite;
 }
 
 @keyframes animeFill {
@@ -278,7 +306,7 @@ option {
 .form-input:focus {
   outline: none;
   box-shadow: 0.3rem 0.3rem 0.6rem var(--red4),
-    -0.2rem -0.2rem 0.5rem var(--red2);
+    -0.2rem -0.2rem 0.5rem var(--red5);
 }
 
 .form_textarea {
@@ -292,9 +320,9 @@ option {
   width: fit-content;
   padding: 0 25px;
   margin: auto;
-  background-color: var(--white);
   border: none;
   border-radius: 15px;
+  box-shadow: none;
 }
 
 .witness-btn:hover {
@@ -317,6 +345,10 @@ option {
 .msg_valid {
   border-bottom: 1px solid var(--green);
   color: var(--green);
+}
+
+.alert_msg {
+  margin-top: 25px;
 }
 
 /* IMPRINTS */

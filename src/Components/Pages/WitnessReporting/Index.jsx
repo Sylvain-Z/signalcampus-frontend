@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./witnessReporting.css";
+// import "./witnessReporting.css";
 import axios from "axios";
 
 function WitnessReporting() {
@@ -109,7 +109,9 @@ function WitnessReporting() {
         {msg && <p className="msg_valid">{msg}</p>}
         {error && <p className="msg_invalid">{error}</p>}
 
-        <button type="submit">Signaler !</button>
+        <button type="submit" className="witness-btn">
+          Signaler !
+        </button>
       </form>
     </section>
   );

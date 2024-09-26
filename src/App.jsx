@@ -5,6 +5,8 @@ import HOC from "./Components/HOC/Index";
 import VictimReporting from "./Components/Pages/VictimReporting/Index";
 import ReportingForm from "./Components/Pages/ReportingForm/Index";
 import Imprints from "./Components/Pages/Imprints/Index";
+
+/* Pages pour les utilisateurs */
 import UserCreationForm from "./Components/User/UserCreationForm";
 import UserConnexionForm from "./Components/User/UserConnexionForm";
 import Profils from "./Components/Pages/Profils/UserProfil";
